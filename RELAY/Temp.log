@@ -1,0 +1,13 @@
+0	1	mikroCPIC1618.exe -MSF -DBG -pP16F877A -DL -O11111114 -fo8 -N"C:\Users\Ahsan Al Bashar\Desktop\MIcro-C\RELAY\Temp.mcppi" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" -SP"C:\Users\Ahsan Al Bashar\Desktop\MIcro-C\RELAY\" -IP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" "Temp.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_CType.mcl" "__Lib_CString.mcl" "__Lib_Conversions.mcl" "__Lib_ADC_A_C.mcl" "__Lib_LcdConsts.mcl" "__Lib_Lcd.mcl"	 
+hint: 0	1139	Available RAM: 352 [bytes], Available ROM: 8192 [bytes]	 
+diagnostics: 0	122	Compilation Started	Temp.c
+diagnostics: 35	123	Compiled Successfully	Temp.c
+hint: 18	1164	Variable 'res' has been eliminated by optimizer	Temp.c
+hint: 19	1164	Variable 'volt' has been eliminated by optimizer	Temp.c
+diagnostics: 0	127	All files Compiled in 63 ms	 
+hint: 0	1144	Used RAM (bytes): 57 (16%)  Free RAM (bytes): 295 (84%)	Used RAM (bytes): 57 (16%)  Free RAM (bytes): 295 (84%)
+hint: 0	1144	Used ROM (program words): 1518 (19%)  Free ROM (program words): 6674 (81%)	Used ROM (program words): 1518 (19%)  Free ROM (program words): 6674 (81%)
+diagnostics: 0	125	Project Linked Successfully	Temp.mcppi
+diagnostics: 0	128	Linked in 15 ms	 
+diagnostics: 0	129	Project 'Temp.mcppi' completed: 234 ms	 
+diagnostics: 0	103	Finished successfully: 27 Nov 2023, 22:06:47	Temp.mcppi

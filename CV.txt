@@ -1,0 +1,275 @@
+char array_ca[]={0xC0,0xF9,0xA4,0xB0,0x99,0x92,0x82,0xF8,0x80,0x90 };
+ char array_cc[]={0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F};
+
+
+
+
+7seg_2display.........................
+
+char array[]={0xC0,0xF9,0xA4,0xB0,0x99,0x92,0x82,0xF8,0x80,0x90 };
+void main() {
+     int i=0,k,res,mod;
+    TRISB=0x00;
+    TRISD=0x00;
+    portb=0x00;
+    portd=0x00;
+
+    while(1){
+
+    //for(i=0;i<=99;i++)
+
+        res=i/10;
+        mod=i%10;
+
+for(k=0;k<50;k++)
+{
+     portd.f0=1;
+    portb=array[res];
+    delay_ms(5);
+    portd.f0=0;
+    portd.f1=1;
+    portb=array[mod];
+    delay_ms(5);
+    portd.f1=0;
+ }    i++;
+     }
+
+}
+
+
+
+7seg_2_display_button.......................
+
+char array[]={0xC0,0xF9,0xA4,0xB0,0x99,0x92,0x82,0xF8,0x80,0x90 };
+void main() {
+     int i=0,k,res,mod;
+    TRISB=0x00;
+    TRISD=0x00;
+    portb=0x00;
+    portd=0x00;
+    TRISC=0xff;
+    while(1)
+    {
+     res=i/10;
+     mod=i%10;
+    portd.f0=1;
+    portb=array[res];
+    delay_ms(5);
+    portd.f0=0;
+    portd.f1=1;
+    portb=array[mod];
+    delay_ms(5);
+    portd.f1=0;
+    
+    if(portc.f0==0x00 && i<99)
+    
+       {
+       delay_ms(100);
+       if(portc.f0==0x00 && i<99)
+       {
+       i=i+1;
+       }
+       }
+       
+     if(portc.f1==0x00 && i>0)
+
+       {
+       delay_ms(100);
+       if(portc.f1==0x00 && i>0)
+       {
+       i=i-1;
+       }
+       }
+    
+    
+     }
+
+
+
+}
+
+
+Relay.......................
+void main() {
+  TRISC=0x00;
+  portc=0x00;
+  
+  while(1)
+  {
+  portc.f0=1;
+  portc.f1=1;
+  delay_ms(1000);
+  portc.f0=0;
+  portc.f1=0;
+  delay_ms(1000);
+  }
+}
+
+
+DC-PWM.................................
+
+void main() {
+
+short duty=0;
+TRISB=0x00;
+TRISD=0xff;
+portb=0x00;
+
+while(1)
+{
+  portb.f0=1;
+  portb.f1=0;
+  PWM1_Init(5000);
+  PWM1_Start();
+  PWM1_Set_Duty(duty);
+  while(1)
+  {
+  if(portd.f0==0xff && duty<250)
+  {
+   delay_ms(200);
+      if(portd.f0==0xff && duty<250)
+      {
+      duty=duty+10;
+      PWM1_Set_Duty(duty);
+      }
+  }
+  if(portd.f1==0xff && duty>0)
+  {
+   delay_ms(200);
+      if(portd.f1==0xff && duty>0 )
+      {
+      duty=duty-10;
+      PWM1_Set_Duty(duty);
+      }
+  }
+    }
+  
+
+}
+}
+
+
+
+
+LCD.......
+
+sbit LCD_RS at RB0_bit;
+sbit LCD_EN at RB1_bit;
+sbit LCD_D4 at RB2_bit;
+sbit LCD_D5 at RB3_bit;
+sbit LCD_D6 at RB4_bit;
+sbit LCD_D7 at RB5_bit;
+
+sbit LCD_RS_Direction at TRISB0_bit;
+sbit LCD_EN_Direction at TRISB1_bit;
+sbit LCD_D4_Direction at TRISB2_bit;
+sbit LCD_D5_Direction at TRISB3_bit;
+sbit LCD_D6_Direction at TRISB4_bit;
+sbit LCD_D7_Direction at TRISB5_bit;
+
+char text1[]="Ahsan Al Bashar";
+char text2[]="Jun Al Ahsan";
+void main() {
+
+     char i=0;
+     Adcon1=0x06; //disable analog pin
+     cmcon=0x07;// disable Comparator
+     LCD_init();
+     LCD_cmd(_LCD_CLEAR);
+     LCD_cmd(_LCD_cursor_off);
+     LCD_out(1,1,text1);
+     
+     while(1)
+     {
+     for(i=0;i<4;i++)
+     {
+     LCD_cmd(_LCD_SHIFT_LEFT);
+     delay_ms(500);
+     }
+     
+     }
+}
+
+
+
+void main(){
+ int i;
+ TRISB=0x00;
+ portb=0x00;
+ 
+ while(1){
+ 
+  for(i=0;i<50;i++){
+  
+   portb.f0=1;
+   delay_us(800);
+   portb.f0=0;
+   delay_us(19200);
+  }
+  delay_ms(2000);
+  
+  for(i=0;i<50;i++){
+
+   portb.f0=1;
+   delay_us(1500);
+   portb.f0=0;
+   delay_us(18500);
+  }
+  delay_ms(2000);
+  
+  for(i=0;i<50;i++){
+
+   portb.f0=1;
+   delay_us(2200);
+   portb.f0=0;
+   delay_us(17800);
+  }
+  delay_ms(2000);
+ 
+ 
+ 
+ }
+ 
+ 
+
+}
+
+
+
+Temparature....
+
+
+sbit LCD_RS at RB0_bit;
+sbit LCD_EN at RB1_bit;
+sbit LCD_D4 at RB2_bit;
+sbit LCD_D5 at RB3_bit;
+sbit LCD_D6 at RB4_bit;
+sbit LCD_D7 at RB5_bit;
+
+sbit LCD_RS_Direction at TRISB0_bit;
+sbit LCD_EN_Direction at TRISB1_bit;
+sbit LCD_D4_Direction at TRISB2_bit;
+sbit LCD_D5_Direction at TRISB3_bit;
+sbit LCD_D6_Direction at TRISB4_bit;
+sbit LCD_D7_Direction at TRISB5_bit;
+
+char display[16]="";
+void main() {
+       unsigned int res;
+       float volt,temp;
+       
+       TRISA=0xff;
+       lcd_init();
+       lcd_cmd(_lcd_clear);
+       lcd_cmd(_lcd_cursor_off);
+       while(1){
+       res=adc_read(0);
+       volt=res*4.88;
+       temp=volt/10;
+       
+       lcd_out(1,1,"Temp= ");
+       floattostr(temp,display);
+       lcd_out_cp(display);
+       }
+       
+}
